@@ -8,6 +8,7 @@ import com.example.reggie_take_out.entity.Employee;
 import com.example.reggie_take_out.mapper.EmployeeMapper;
 import com.example.reggie_take_out.service.EmployeeService;
 import com.sun.istack.internal.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  * @createDate 2022-09-19 15:21:12
  */
 @Service
+@Slf4j
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         implements EmployeeService {
 
@@ -43,8 +45,13 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee>
         if (one.getStatus() == 0) {
             return R.error("账号已禁用!");
         }
-        request.setAttribute("employee", one.getId());
+        request.getSession().setAttribute("employee", one.getId());
+        log.info("登录成功!!!");
         return R.success(one);
+    }
+    public R<String> logout(HttpServletRequest request){
+        request.getSession().removeAttribute("employee");
+        return R.success("退出成功");
     }
 }
 
