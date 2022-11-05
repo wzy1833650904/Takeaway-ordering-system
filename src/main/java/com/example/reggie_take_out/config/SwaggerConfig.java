@@ -33,7 +33,7 @@ public class SwaggerConfig {
                 .title("大食堂系统外卖--api文档")
                 .description("大食堂系统外卖接口描述")
                 .version("1.0")
-                .contact(new Contact("泽洋", "https://baidu.com", "1833650904@qq.com"))
+                .contact(new Contact("嘤嘤", "https://baidu.com", "@qq.com"))
                 .build();
     }
 }
